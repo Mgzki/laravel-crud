@@ -18,9 +18,9 @@
 
         @foreach($posts as $post)
         <article class="mb-2">
-            <a href="/posts/{{ $post->id}}/edit" class="text-x1 font-bold text-blue-500"> {{ $post->title}}</a>
+            <a href="/posts/{{ $post->id}}/edit" class="text-x1 font-bold text-blue-500"> {{ $post->title }}</a>
             <p class="text-sm text-gray-800"> {{ $post->created_at->format('d-m-Y') }}</p>
-            <p class="text-lg text-gray-600">{{ $post->content}}</p>
+            <p class="text-lg text-gray-600">{{ $post->content }}</p>
             <hr class="mt-2">
         </article>
         @endforeach

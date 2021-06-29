@@ -10,9 +10,10 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderByDesc('created_at')->get();
 
         return view('posts.index', ['posts' => $posts]); //how to pass data to views
+        // return view('posts.index')-> with('posts', $posts);
         
     }
 
@@ -38,7 +39,7 @@ class PostsController extends Controller
 
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        return view('posts.edit',['post' => $post]);
     }
 
     public function update(Post $post)
