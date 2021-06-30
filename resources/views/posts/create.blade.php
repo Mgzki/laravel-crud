@@ -17,16 +17,30 @@
             <div class="mb-4">
                 <label class="font-bold text-gray-800" for="title">Title: </label>
                 <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="title"
+                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0 @error('title') border-2 border-red-500 @enderror" id ="title"
                 name="title" >
+                @error('title')
+                    <span class="text-red-500 mt-1">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label class="font-bold text-gray-800" for="content">Content: </label>
                 <textarea class="h-16 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="content"
+                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0 @error('title') border-2 border-red-500 @enderror" id ="content"
                 name="content"></textarea>
+                @error('content')
+                    <span class="text-red-500 mt-1">{{ $message }}</span>
+                @enderror
             </div>
+            <!--
+            <div class="mb-4">
+                <label class="font-bold text-gray-800" for="slug">Slug: </label>
+                <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
+                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="slug"
+                name="slug" >
+            </div>
+            /-->
 
             <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
             rounded hover:shadow">Submit</button>
