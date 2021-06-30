@@ -39,6 +39,7 @@ class PostsController extends Controller
             'title' => request('title'),
             'content' => request('content'),
             'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', request('title')))),
+            'category_id' => 1,
         ]);
 
         // Post::create(request()->validate([

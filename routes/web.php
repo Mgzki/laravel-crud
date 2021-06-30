@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,11 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::get('/', function () {
+
+    // DB::listen(function ($query){
+    //     logger($query->sql);
+    // });
+
     return view('welcome');
 });
 
@@ -30,3 +37,11 @@ Route::put("/posts/{post:slug}", [PostsController::class,'update']);
 Route::get("/posts/create", [PostsController::class, 'create']);
 
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
+
+Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
+
+// Route::get('category/{category:slug}', function (Category $category){ // Category $category as parameter in controller
+//     return view('posts.index', [
+//         'posts' => $category->posts
+//     ]);
+// });

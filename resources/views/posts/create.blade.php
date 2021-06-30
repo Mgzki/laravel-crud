@@ -33,14 +33,13 @@
                     <span class="text-red-500 mt-1">{{ $message }}</span>
                 @enderror
             </div>
-            <!--
-            <div class="mb-4">
-                <label class="font-bold text-gray-800" for="slug">Slug: </label>
+            
+            <!-- <div class="mb-4">
+                <label class="font-bold text-gray-800" for="category">Category: </label>
                 <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="slug"
-                name="slug" >
-            </div>
-            /-->
+                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="category"
+                name="category" >
+            </div> -->
 
             <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
             rounded hover:shadow">Submit</button>

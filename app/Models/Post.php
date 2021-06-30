@@ -10,7 +10,13 @@ class Post extends Model
     use HasFactory;
 
     //"hey laravel, let me mass asign title and content"
-    protected $fillable = [
-        'title', 'content', 'slug'
+    protected $fillable = 
+    [
+        'title', 'content', 'slug', 'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
