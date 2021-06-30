@@ -13,12 +13,18 @@
 
         <h1 class="text-3xl font-bold mb-4"> My Blog</h1>
 
+        @if(session()->has('success'))
+            <div class="text-green-500 font-semibold">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+
         <a href="/posts/create" class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
             rounded hover:shadow" my-2>New Post</a>
 
         @foreach($posts as $post)
         <article class="mb-2">
-            <a href="/posts/{{ $post->id}}/edit" class="text-x1 font-bold text-blue-500"> {{ $post->title }}</a>
+            <a href="/posts/{{ $post->slug}}/edit" class="text-x1 font-bold text-blue-500"> {{ $post->title }}</a>
             <p class="text-sm text-gray-800"> {{ $post->created_at->format('d-m-Y') }}</p>
             <p class="text-lg text-gray-600">{{ $post->content }}</p>
             <hr class="mt-2">

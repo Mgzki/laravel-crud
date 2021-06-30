@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-
-use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
@@ -24,17 +23,30 @@ class PostsController extends Controller
 
     public function store()
     {
+        // Validator::make(request()->all(), [
+        //     'title' => 'required|unique:posts,title',
+        //     'content' => 'required',
+        // ], [
+        //     'title.required' => 'David is not cool', 
+        // ])->validate();
+
         request()->validate([
-            'title' => 'required',
+            'title' => 'required|unique:posts,title',
             'content' => 'required',
         ]);
 
         Post::create([
             'title' => request('title'),
             'content' => request('content'),
+            'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', request('title')))),
         ]);
 
-        return redirect('/posts');
+        // Post::create(request()->validate([
+        //     'title' => 'required|unique:posts,title',
+        //     'content' => 'required',
+        // ]) + ['slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', request('title'))))]);
+
+        return redirect('/posts')->withSuccess('Post created successfully!');
     }
 
     public function edit(Post $post)

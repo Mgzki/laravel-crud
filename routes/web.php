@@ -23,10 +23,10 @@ Route::get('/posts', [PostsController::class,'index']);
 
 Route::post('/posts', [PostsController::class, 'store']);
 
-Route::get('/posts/{post}/edit', [PostsController::class,'edit']);
+Route::get('/posts/{post:slug}/edit', [PostsController::class,'edit']);
 
-Route::put("/posts/{post}", [PostsController::class,'update']);
+Route::put("/posts/{post:slug}", [PostsController::class,'update']);
 
 Route::get("/posts/create", [PostsController::class, 'create']);
 
-Route::delete("/posts/{post}", [PostsController::class, 'destroy']);
+Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);

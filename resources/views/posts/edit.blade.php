@@ -12,7 +12,7 @@
     <div style="width: 900px;" class="container max-w-full mx-auto pt-4">
     
 
-        <form method= "POST" action="/posts/{{ $post->id }}">
+        <form method= "POST" action="/posts/{{ $post->slug }}">
             @method('PUT')
             @csrf
 
@@ -40,7 +40,7 @@
 
         </form>
 
-        <form method='POST' action="/posts/{{ $post->id}}">
+        <form method='POST' action="/posts/{{ $post->slug }}">
             @csrf
             @method('DELETE')
             

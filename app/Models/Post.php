@@ -11,6 +11,6 @@ class Post extends Model
 
     //"hey laravel, let me mass asign title and content"
     protected $fillable = [
-        'title', 'content'
+        'title', 'content', 'slug'
     ];
 }
