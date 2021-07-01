@@ -9,7 +9,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderByDesc('created_at')->get();
+        $posts = Post::with('category')->orderByDesc('created_at')->get();
 
         return view('posts.index', ['posts' => $posts]); //how to pass data to views
         // return view('posts.index')-> with('posts', $posts);
