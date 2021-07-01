@@ -17,5 +17,21 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\User::factory(10)->create();
         \App\Models\Post::factory(10)->create();
+
+        \App\Models\Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
+
+        \App\Models\Category::create([
+            'name' => 'Family',
+            'slug' => 'family'
+        ]);
+
+        \App\Models\Category::create([
+            'name' => 'Work',
+            'slug' => 'work'
+        ]);
+
     }
 }
