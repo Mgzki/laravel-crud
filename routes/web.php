@@ -1,10 +1,11 @@
 <?php
 
 
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,12 @@ Route::get("/posts/create", [PostsController::class, 'create']);
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
 
 Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
+
+Route::get('/authors/{author:username}', function (User $author) {
+    return view('posts.index', [
+        'posts' => $author->posts
+    ]);
+});
 
 // Route::get('category/{category:slug}', function (Category $category){ // Category $category as parameter in controller
 //     return view('posts.index', [

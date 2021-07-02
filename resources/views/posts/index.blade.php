@@ -26,7 +26,7 @@
         <article class="mb-2">
             <a href="/posts/{{ $post->slug}}/edit" class="text-x1 font-bold text-blue-500"> {{ $post->title }}</a>
             <div>
-                By <a href="#" class="text-x2 font-bold text-blue-700"> {{ $post->user->name}} </a> in: 
+                By <a href="/authors/{{ $post->author->username}}" class="text-x2 font-bold text-blue-700"> {{ $post->author->name}} </a> in: 
                 <a href="/category/{{ $post->category->slug}}" class="text-x2 text-blue-700"> 
                     {{$post->category->name}}
                 </a>
