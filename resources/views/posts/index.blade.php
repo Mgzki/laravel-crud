@@ -25,7 +25,12 @@
         @foreach($posts as $post)
         <article class="mb-2">
             <a href="/posts/{{ $post->slug}}/edit" class="text-x1 font-bold text-blue-500"> {{ $post->title }}</a>
-            <div><a href="/category/{{ $post->category->slug}}" class="text-x2 text-blue-700"> {{$post->category->name}}</a></div>
+            <div>
+                By <a href="#" class="text-x2 font-bold text-blue-700"> {{ $post->user->name}} </a> in: 
+                <a href="/category/{{ $post->category->slug}}" class="text-x2 text-blue-700"> 
+                    {{$post->category->name}}
+                </a>
+            </div>
             <p class="text-sm text-gray-800"> {{ $post->created_at->format('d-m-Y') }}</p>
             <p class="text-lg text-gray-600">{{ $post->content }}</p>
             <hr class="mt-2">
