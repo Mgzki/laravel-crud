@@ -43,7 +43,7 @@ Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
 
 Route::get('/authors/{author:username}', function (User $author) {
     return view('posts.index', [
-        'posts' => $author->posts
+        'posts' => $author->posts->load(['category', 'author'])
     ]);
 });
 
