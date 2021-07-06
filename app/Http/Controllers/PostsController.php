@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 // use Illuminate\Support\Facades\Validator;
 
@@ -10,8 +11,13 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::with('category','author')->orderByDesc('created_at')->get();
+        $categories = Category::all();
 
-        return view('posts.index', ['posts' => $posts]); //how to pass data to views
+        return view('posts.index', 
+        [
+            'posts' => $posts,
+            'category' => $categories
+        ]); //how to pass data to views
         // return view('posts.index')-> with('posts', $posts);
         
     }

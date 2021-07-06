@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::get('/', function () {
     //     logger($query->sql);
     // });
 
-    return view('welcome');
+    return view('welcome', ['category' => Category::all()]);
 });
 
 Route::get('/posts', [PostsController::class,'index']);
@@ -45,7 +46,8 @@ Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
 
 Route::get('/authors/{author:username}', function (User $author) {
     return view('posts.index', [
-        'posts' => $author->posts->load(['category', 'author'])
+        'posts' => $author->posts->load(['category', 'author']),
+        'category' => Category::all()
     ]);
 });
 
