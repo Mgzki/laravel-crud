@@ -35,6 +35,8 @@ Route::get('/posts/{post:slug}/edit', [PostsController::class,'edit']);
 
 Route::put("/posts/{post:slug}", [PostsController::class,'update']);
 
+Route::get("/posts/{post:slug}", [PostsController::class,'post']);
+
 Route::get("/posts/create", [PostsController::class, 'create']);
 
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
