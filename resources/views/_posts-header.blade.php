@@ -25,7 +25,7 @@
 
                 @foreach ($category as $category)
                     <x-dropdown-item 
-                        href="/category/{{ $category->slug }}"
+                        href="/posts/?category={{ $category->slug }}"
                         :active="isset($currentCategory) && $currentCategory->is($category)">
                              {{ ucwords($category->name) }} 
                     </x-dropdown-item>

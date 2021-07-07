@@ -12,8 +12,13 @@ class PostsController extends Controller
     {
         return view('posts.index', 
         [
-            'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search']))->get(),
-            'category' => Category::all()
+            // 'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search']))->get(),
+            // for if you want to let the filter handle categories as well
+            // changes URL from /category/slug to query=category
+            'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search','category']))->get(),
+            'category' => Category::all(),
+            // handles passing selected category for the category search highlighting in header
+            'currentCategory' => Category::firstWhere('slug', request('category'))
         ]); //how to pass data to views
         // return view('posts.index')-> with('posts', $posts);
         

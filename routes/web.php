@@ -42,7 +42,7 @@ Route::get("/posts/create", [PostsController::class, 'create']);
 
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
 
-Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
+// Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
 
 Route::get('/authors/{author:username}', function (User $author) {
     return view('posts.index', [
