@@ -10,19 +10,16 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('category','author')->orderByDesc('created_at')->get();
-        $categories = Category::all();
-
         return view('posts.index', 
         [
-            'posts' => $posts,
-            'category' => $categories
+            'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search']))->get(),
+            'category' => Category::all()
         ]); //how to pass data to views
         // return view('posts.index')-> with('posts', $posts);
         
     }
 
-    public function post(Post $post)
+    public function show(Post $post)
     {
         return view('posts.post', ['post' => $post]);
     }
