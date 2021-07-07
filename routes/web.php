@@ -25,7 +25,8 @@ Route::get('/', function () {
     //     logger($query->sql);
     // });
 
-    return view('welcome', ['category' => Category::all()]);
+    // return view('welcome', ['category' => Category::all()]);
+    return redirect('/posts');
 });
 
 Route::get('/posts', [PostsController::class,'index']);

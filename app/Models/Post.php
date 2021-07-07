@@ -25,6 +25,7 @@ class Post extends Model
         });
 
         $query->when($filters['category'] ?? false, function($query, $category){
+            //give me the posts where they have a category. specifically the ones that matches what the user requested
             $query
                 ->whereHas('category', fn ($query) => 
                     $query->where('slug', $category)

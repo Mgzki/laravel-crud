@@ -16,9 +16,13 @@ class PostsController extends Controller
             // for if you want to let the filter handle categories as well
             // changes URL from /category/slug to query=category
             'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search','category']))->get(),
-            'category' => Category::all(),
+            // category is passed through every time, but it's only used in the category dropdown
+            // can remove if you extract category dropdown to a component and pass the category stuff CategoryDropdown.php
+            // which renders category-dropdown.blade.php
+            // 'category' => Category::all(),
             // handles passing selected category for the category search highlighting in header
-            'currentCategory' => Category::firstWhere('slug', request('category'))
+            // 'currentCategory' => Category::firstWhere('slug', request('category'))
+            // put currentCategory in the category dropdown component also
         ]); //how to pass data to views
         // return view('posts.index')-> with('posts', $posts);
         
@@ -26,7 +30,7 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        return view('posts.post', ['post' => $post]);
+        return view('posts.show', ['post' => $post]);
     }
 
     public function create()

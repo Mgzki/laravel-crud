@@ -13,7 +13,6 @@
 
                 <div class="mt-4">
                     <h1 class="text-3xl">
-                        <!-- needs to be updated with a view for individual post  -->
                         <a href="/posts/{{ $post->slug}}"> 
                             {{ $post->title }}
                         </a>
