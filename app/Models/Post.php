@@ -31,6 +31,14 @@ class Post extends Model
                     $query->where('slug', $category)
                 );
         });
+
+        $query->when($filters['author'] ?? false, function($query, $author){
+            //give me the posts where they have a category. specifically the ones that matches what the user requested
+            $query
+                ->whereHas('author', fn ($query) => 
+                    $query->where('username', $author)
+                );
+        });
         // if ($filters['search'] ?? false){
         //     $query
         //         ->where('title','like', '%' . request('search') . '%')
