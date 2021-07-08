@@ -24,7 +24,6 @@ class PostsController extends Controller
             // 'currentCategory' => Category::firstWhere('slug', request('category'))
             // put currentCategory in the category dropdown component also
         ]); //how to pass data to views
-        // return view('posts.index')-> with('posts', $posts);
         
     }
 

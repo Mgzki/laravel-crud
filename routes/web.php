@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,10 @@ Route::get('/', function () {
     //     logger($query->sql);
     // });
 
-    // return view('welcome', ['category' => Category::all()]);
-    return redirect('/posts');
+    return view('posts.welcome', [
+        'category' => Category::all(),
+        'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search','category','author']))->get(),
+    ]);
 });
 
 Route::get('/posts', [PostsController::class,'index']);
