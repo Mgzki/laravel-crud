@@ -78,13 +78,13 @@
                             Submit
                     </button>
                 </div>
-                @if ($errors->any())
+                {{-- @if ($errors->any())
                     <ul>
                         @foreach ( $errors->all() as $error)
                             <li class="text-xs text-red-500">{{ $error }}</li>
                         @endforeach
                     </ul>    
-                @endif
+                @endif --}}
             </form>
         </main>
     </section>

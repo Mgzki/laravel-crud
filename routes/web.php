@@ -41,7 +41,9 @@ Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest'); //middleware is logic that runs whenever a new request comes in
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::post('logout', [SessionsController::class, 'destroy']);
+Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
+Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
+Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 // Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
 // Route::get('/authors/{author:username}', function (User $author) {
