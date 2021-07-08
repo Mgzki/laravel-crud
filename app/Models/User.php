@@ -37,6 +37,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // accessor
+    // regardless of how its stored in database, when it's echo'd out its changed by the following method
+    // public function getUsernameAttribute($username)
+    // {
+    //     return ucwords($username); //capitalize usernames
+    // }
+
+    // creating a mutator to hash passwords
+    // eloquent automatically checks for any methods that follow this syntax
+    // set(attribute name)Attribute
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
