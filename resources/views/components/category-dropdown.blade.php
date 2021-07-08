@@ -12,11 +12,13 @@
 
     {{-- only works if the route is named 'home' --}}
     {{-- currently not working when /posts route is named home --}}
-    <x-dropdown-item href="/posts" {{-- active="request()->routeIs('home')" --}}> All </x-dropdown-item>
+    <x-dropdown-item href="/posts?{{ http_build_query(request()->except('category','page')) }}"
+        :active="request()->routeIs('home')"> All 
+    </x-dropdown-item>
 
     @foreach ($category as $category)
         <x-dropdown-item 
-            href="/posts/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
+            href="/posts/?category={{ $category->slug }}&{{ http_build_query(request()->except('category','page')) }}"
             :active="isset($currentCategory) && $currentCategory->is($category)">
                  {{ ucwords($category->name) }} 
         </x-dropdown-item>

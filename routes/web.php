@@ -26,13 +26,14 @@ Route::get('/', function () {
     //     logger($query->sql);
     // });
 
-    return view('posts.welcome', [
-        'category' => Category::all(),
-        'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search','category','author']))->get(),
-    ]);
+    // return view('posts.index', [
+    //     'category' => Category::all(),
+    //     'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search','category','author']))->get(),
+    // ]);
+    return redirect('/posts');
 });
 
-Route::get('/posts', [PostsController::class,'index']);
+Route::get('/posts', [PostsController::class,'index'])->name('home');
 
 Route::post('/posts', [PostsController::class, 'store']);
 

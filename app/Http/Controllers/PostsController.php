@@ -15,7 +15,12 @@ class PostsController extends Controller
             // 'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search']))->get(),
             // for if you want to let the filter handle categories as well
             // changes URL from /category/slug to query=category
-            'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search','category','author']))->get(),
+            'posts' => 
+                Post::with('category','author')
+                    ->orderByDesc('created_at')
+                    ->filter(request(['search','category','author']))
+                    ->paginate(6)
+                    ->withQueryString(), //lets you maintain queries when switching pages
             // category is passed through every time, but it's only used in the category dropdown
             // can remove if you extract category dropdown to a component and pass the category stuff CategoryDropdown.php
             // which renders category-dropdown.blade.php
