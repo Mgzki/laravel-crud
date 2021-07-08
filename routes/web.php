@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +38,10 @@ Route::get("/posts/{post:slug}", [PostsController::class,'show']);
 Route::get("/posts/create", [PostsController::class, 'create']);
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
 
-Route::get('register', [RegisterController::class, 'create']);
-Route::post('register', [RegisterController::class, 'store']);
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest'); //middleware is logic that runs whenever a new request comes in
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::post('logout', [SessionsController::class, 'destroy']);
 
 // Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
 // Route::get('/authors/{author:username}', function (User $author) {
