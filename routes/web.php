@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\PostCommentsController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
@@ -37,6 +37,8 @@ Route::put("/posts/{post:slug}", [PostsController::class,'update']);
 Route::get("/posts/{post:slug}", [PostsController::class,'show']);
 Route::get("/posts/create", [PostsController::class, 'create']);
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
+
+Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest'); //middleware is logic that runs whenever a new request comes in
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
