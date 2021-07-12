@@ -48,6 +48,11 @@ class Post extends Model
 
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class); // user_id is the foreign key, otherwise laravel things it's author_id
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
