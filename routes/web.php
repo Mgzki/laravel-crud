@@ -18,7 +18,9 @@ use App\Http\Controllers\SessionsController;
 |
 */
 
-Route::get('ping', function() {
+Route::post('newsletter', function () {
+
+    request()->validate(['email' => 'required|email']);
     $mailchimp = new \MailchimpMarketing\ApiClient();
 
     $mailchimp->setConfig([
@@ -26,8 +28,17 @@ Route::get('ping', function() {
         'server' => 'us6'
     ]);
 
-    $response = $mailchimp->lists->getListMembersInfo('b3dfd1e2fb');
-    ddd($response);
+    try {
+        $response = $mailchimp->lists->addListMember('b3dfd1e2fb', [
+            'email_address' => request('email'),
+            'status' => 'subscribed'
+        ]);
+    } catch (\Exception $e) {
+        throw \Illuminate\Validation\ValidationException::withMessages([
+            'email' => 'This email could not be added'
+        ]);
+    }
+    return redirect('/posts')->withSuccess('You\'re now signed up for the newsletter');
 });
 
 Route::get('/', function () {
@@ -42,12 +53,12 @@ Route::get('/', function () {
     // ]);
     return redirect('/posts');
 });
-Route::get('/posts', [PostsController::class,'index'])->name('home');
+Route::get('/posts', [PostsController::class, 'index'])->name('home');
 Route::post('/posts', [PostsController::class, 'store']);
 Route::get("/posts/create", [PostsController::class, 'create']);
-Route::get('/posts/{post:slug}/edit', [PostsController::class,'edit']);
-Route::put("/posts/{post:slug}", [PostsController::class,'update']);
-Route::get("/posts/{post:slug}", [PostsController::class,'show']);
+Route::get('/posts/{post:slug}/edit', [PostsController::class, 'edit']);
+Route::put("/posts/{post:slug}", [PostsController::class, 'update']);
+Route::get("/posts/{post:slug}", [PostsController::class, 'show']);
 
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
 
