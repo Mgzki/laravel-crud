@@ -10,6 +10,16 @@
     html {
         scroll-behavior: smooth;
     }
+
+    .clamp {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .clamp.one-line {
+        -webkit-line-clamp: 1;
+    }
 </style>
 
 <body style="font-family: Open Sans, sans-serif">

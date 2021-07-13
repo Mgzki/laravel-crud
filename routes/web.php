@@ -18,6 +18,18 @@ use App\Http\Controllers\SessionsController;
 |
 */
 
+Route::get('ping', function() {
+    $mailchimp = new \MailchimpMarketing\ApiClient();
+
+    $mailchimp->setConfig([
+        'apiKey' => config('services.mailchimp.key'),
+        'server' => 'us6'
+    ]);
+
+    $response = $mailchimp->lists->getListMembersInfo('b3dfd1e2fb');
+    ddd($response);
+});
+
 Route::get('/', function () {
 
     // DB::listen(function ($query){
