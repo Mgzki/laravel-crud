@@ -83,6 +83,11 @@ class PostsController extends Controller
 
     public function edit(Post $post)
     {
+        if (Gate::allows('admin-only', Auth::user())){
+            return view('posts.edit',['post' => $post]);
+        } else {
+            abort(403);
+        }
         return view('posts.edit',['post' => $post]);
     }
 
@@ -93,13 +98,15 @@ class PostsController extends Controller
             'content' => 'required',
         ]);
 
-        $post->update([
-            'title' => request('title'),
-            'content' => request('content'),
-        ]);
-
-        //sends you back to the posts page once a post is updated
-        return redirect('/posts');
+        if (Gate::allows('admin-only', Auth::user())){
+            $post->update([
+                'title' => request('title'),
+                'content' => request('content'),
+            ]);
+            return redirect('/posts');
+        } else {
+            abort(403);
+        }
     }
 
     public function destroy(Post $post)
