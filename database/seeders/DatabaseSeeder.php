@@ -21,6 +21,12 @@ class DatabaseSeeder extends Seeder
         //Creates a user with every field random except name
         $user = User::factory()->create([
             'name' => 'Max Grodzki',
+            'id' => 1,
+            'username' => 'mgdzki',
+            'email' => 'maxgrodzki@gmail.com',
+            'password' => 'password',
+            'isAdmin' => 1
+
         ]);
 
         //Creates posts and categories with everything random, except the author of the posts
