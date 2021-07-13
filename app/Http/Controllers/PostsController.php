@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 // use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
@@ -39,7 +42,13 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        if (Gate::allows('admin-only', Auth::user())){
+            return view('posts.create',[
+                'categories' => Category::all()
+            ]);
+        } else {
+            abort(403);
+        }
     }
 
     public function store()

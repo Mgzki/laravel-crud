@@ -14,8 +14,8 @@
         <form method= "POST" action="/posts">
             @csrf
 
-            <div class="mb-4">
-                <label class="font-bold text-gray-800" for="title">Title: </label>
+            <div class="mb-4 mt-10">
+                <label class="font-semibold text-gray-800" for="title">Title: </label>
                 <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
                 text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0 @error('title') border-2 border-red-500 @enderror" id ="title"
                 name="title" >
@@ -25,7 +25,7 @@
             </div>
 
             <div class="mb-4">
-                <label class="font-bold text-gray-800" for="content">Content: </label>
+                <label class="font-semibold text-gray-800" for="content">Content: </label>
                 <textarea class="h-16 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
                 text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0 @error('title') border-2 border-red-500 @enderror" id ="content"
                 name="content"></textarea>
@@ -33,13 +33,21 @@
                     <span class="text-red-500 mt-1">{{ $message }}</span>
                 @enderror
             </div>
+
+            <div class="mb-10">
+                <label class="font-semibold" for="category">Select a category: </label>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                @endforeach
+            </div>
             
-            <!-- <div class="mb-4">
+            {{-- <div class="mb-4">
                 <label class="font-bold text-gray-800" for="category">Category: </label>
                 <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
                 text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="category"
                 name="category" >
-            </div> -->
+            </div> --}}
+            
 
             <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
             rounded hover:shadow">Submit</button>

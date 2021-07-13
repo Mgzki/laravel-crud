@@ -44,10 +44,11 @@ Route::get('/', function () {
 });
 Route::get('/posts', [PostsController::class,'index'])->name('home');
 Route::post('/posts', [PostsController::class, 'store']);
+Route::get("/posts/create", [PostsController::class, 'create']);
 Route::get('/posts/{post:slug}/edit', [PostsController::class,'edit']);
 Route::put("/posts/{post:slug}", [PostsController::class,'update']);
 Route::get("/posts/{post:slug}", [PostsController::class,'show']);
-Route::get("/posts/create", [PostsController::class, 'create']);
+
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
