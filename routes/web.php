@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Services\Newsletter;
+use Illuminate\Validation\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,28 +21,7 @@ use App\Http\Controllers\SessionsController;
 |
 */
 
-Route::post('newsletter', function () {
 
-    request()->validate(['email' => 'required|email']);
-    $mailchimp = new \MailchimpMarketing\ApiClient();
-
-    $mailchimp->setConfig([
-        'apiKey' => config('services.mailchimp.key'),
-        'server' => 'us6'
-    ]);
-
-    try {
-        $response = $mailchimp->lists->addListMember('b3dfd1e2fb', [
-            'email_address' => request('email'),
-            'status' => 'subscribed'
-        ]);
-    } catch (\Exception $e) {
-        throw \Illuminate\Validation\ValidationException::withMessages([
-            'email' => 'This email could not be added'
-        ]);
-    }
-    return redirect('/posts')->withSuccess('You\'re now signed up for the newsletter');
-});
 
 Route::get('/', function () {
 
@@ -61,6 +43,8 @@ Route::put("/posts/{post:slug}", [PostsController::class, 'update']);
 Route::get("/posts/{post:slug}", [PostsController::class, 'show']);
 
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);
+
+Route::post('newsletter', NewsletterController::class);
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
