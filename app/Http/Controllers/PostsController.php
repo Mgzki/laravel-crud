@@ -63,6 +63,7 @@ class PostsController extends Controller
 
         request()->validate([
             'title' => 'required|unique:posts,title',
+            'thumbnail' => 'required|image',
             'content' => 'required',
             'category_id' => ['required', Rule::exists('categories','id')],
         ]);
@@ -70,11 +71,27 @@ class PostsController extends Controller
 
         Post::create([
             'title' => request('title'),
+            'thumbnail' => request()->file('thumbnail')->store('thumbnails'),
             'content' => request('content'),
             'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', request('title')))),
             'user_id' => Auth::user()->id,
             'category_id' => request('category_id'),
         ]);
+
+        // $attributes = request()->validate([
+        //     'title' => request('title'),
+        //     'content' => request('content'),
+        //     'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', request('title')))),
+        //     'category_id' => request('category_id'),
+        // ]);
+
+        // $attributes['user_id'] = Auth::user()->id;
+        // $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+
+        // Post::create($attributes);
+
+
+
 
         // Post::create(request()->validate([
         //     'title' => 'required|unique:posts,title',

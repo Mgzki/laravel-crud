@@ -1,10 +1,16 @@
 <x-layout>
-    <section>
-        <x-panel class="max-w-sm mx-auto">
-            <form action="/posts" method="post">
+    <section class="max-w-md mx-auto">
+        <h1 class="text-lg font-bold mb-4">
+            Publish New Post
+        </h1>
+        <x-panel >
+            {{-- Need to change encoding type if you upload files --}}
+            <form action="/posts" method="post" enctype="multipart/form-data">
                 @csrf
+
+                {{-- Title --}}
                 <div>
-                    <label for="Title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                    <label for="Title" class="block my-2 uppercase font-bold text-xs text-gray-700">
                         Title
                     </label>
                     <input type="text"
@@ -19,8 +25,31 @@
                         <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
                     @enderror
                 </div>
+
+                {{-- Thumbnail --}}
                 <div>
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                    <label class="block my-2 uppercase font-bold text-xs text-gray-700"
+                        for="thumbnail"
+                    >
+                        Thumbnail
+                    </label>
+                    <input type="file"
+                        class="border border-gray-400 p-2 w-full @error('thumbnail') border-2 border-red-500 @enderror"
+                        name="thumbnail"
+                        id="thumbnail"
+                        value="{{ old('thumbnail') }}"
+                        required
+                    >
+                
+
+                    @error('thumbnail')
+                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Content --}}
+                <div>
+                    <label class="block my-2 uppercase font-bold text-xs text-gray-700"
                         for="content"
                     >
                         Content
@@ -35,15 +64,17 @@
                         <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
                     @enderror
                 </div>
+
+                {{-- Category --}}
                 <div>
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                    <label class="block my-2 uppercase font-bold text-xs text-gray-700"
                         for="category_id"
                     >
                         Category
                     </label>
                     <select name="category_id" 
                         id="category_id" 
-                        class="form-control @error('category') border-2 border-red-500 @enderror"
+                        class="form-control mb-6 @error('category') border-2 border-red-500 @enderror"
                         
                     >
                         {{-- @php
@@ -63,6 +94,8 @@
                         <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
                     @enderror
                 </div>
+
+                {{-- Submit --}}
                 <x-submit-button>
                     Publish
                 </x-submit-button>
