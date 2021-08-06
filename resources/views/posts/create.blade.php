@@ -1,64 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<x-layout>
+    <section>
+        <x-panel class="max-w-sm mx-auto">
+            <form action="/posts" method="post">
+                @csrf
+                <div>
+                    <label for="Title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                        Title
+                    </label>
+                    <input type="text"
+                        class="border border-gray-400 p-2 w-full @error('title') border-2 border-red-500 @enderror"
+                        name="title"
+                        id="title"
+                        value="{{ old('title') }}"
+                        required
+                    >
 
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body>
-    <div style="width: 900px;" class="container max-w-full mx-auto pt-4">
+                    @error('title')
+                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                        for="content"
+                    >
+                        Content
+                    </label>
+                    <textarea class="border border-gray-400 p-2 w-full @error('content') border-2 border-red-500 @enderror" 
+                        name="content" 
+                        id="content"
+                        required
+                    >{{ old('content') }}</textarea>
 
-        <form method= "POST" action="/posts">
-            @csrf
+                    @error('content')
+                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
+                        for="category_id"
+                    >
+                        Category
+                    </label>
+                    <select name="category_id" 
+                        id="category_id" 
+                        class="form-control @error('category') border-2 border-red-500 @enderror"
+                        
+                    >
+                        {{-- @php
+                            $categories = \App\Models\Category::all();
+                        @endphp --}}
+                        @foreach ($categories as $category)
+                            <option 
+                                value="{{ $category->id }}" 
+                                {{ old('category_id') == $category->id ? 'selected' : '' }}
+                            >
+                                {{ ucwords($category->name) }}
+                            </option>
+                        @endforeach
+                    </select>
 
-            <div class="mb-4 mt-10">
-                <label class="font-semibold text-gray-800" for="title">Title: </label>
-                <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0 @error('title') border-2 border-red-500 @enderror" id ="title"
-                name="title" >
-                @error('title')
-                    <span class="text-red-500 mt-1">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="mb-4">
-                <label class="font-semibold text-gray-800" for="content">Content: </label>
-                <textarea class="h-16 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0 @error('title') border-2 border-red-500 @enderror" id ="content"
-                name="content"></textarea>
-                @error('content')
-                    <span class="text-red-500 mt-1">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="mb-10">
-                <label class="font-semibold" for="category">Select a category: </label>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}"> {{ $category->name }} </option>
-                @endforeach
-            </div>
-            
-            {{-- <div class="mb-4">
-                <label class="font-bold text-gray-800" for="category">Category: </label>
-                <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="category"
-                name="category" >
-            </div> --}}
-            
-
-            <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
-            rounded hover:shadow">Submit</button>
-            
-            <a href="/posts" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
-            rounded hover:shadow">Cancel</a>
-
-
-        </form>
-
-    </div>
-    
-</body>
-</html>
+                    @error('category_id')
+                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
+                    @enderror
+                </div>
+                <x-submit-button>
+                    Publish
+                </x-submit-button>
+            </form>
+        </x-panel>
+    </section>
+</x-layout>

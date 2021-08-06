@@ -15,7 +15,6 @@ class NewsletterController extends Controller
     // if there's a value needed in the constructor and nothing in the service container, laravel doesn't know what's supposed to go there, so it will fail
     public function __invoke(Newsletter $newsletter)
     {
-        ddd($newsletter);
         request()->validate(['email' => 'required|email']);
 
         try {

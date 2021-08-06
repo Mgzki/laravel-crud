@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Category;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -63,14 +64,16 @@ class PostsController extends Controller
         request()->validate([
             'title' => 'required|unique:posts,title',
             'content' => 'required',
+            'category_id' => ['required', Rule::exists('categories','id')],
         ]);
+        
 
         Post::create([
             'title' => request('title'),
             'content' => request('content'),
             'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', request('title')))),
-            'user_id' => 1,
-            'category_id' => 1,
+            'user_id' => Auth::user()->id,
+            'category_id' => request('category_id'),
         ]);
 
         // Post::create(request()->validate([
