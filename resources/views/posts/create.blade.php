@@ -9,69 +9,17 @@
                 @csrf
 
                 {{-- Title --}}
-                <div>
-                    <label for="Title" class="block my-2 uppercase font-bold text-xs text-gray-700">
-                        Title
-                    </label>
-                    <input type="text"
-                        class="border border-gray-400 p-2 w-full @error('title') border-2 border-red-500 @enderror"
-                        name="title"
-                        id="title"
-                        value="{{ old('title') }}"
-                        required
-                    >
-
-                    @error('title')
-                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
-                    @enderror
-                </div>
+                <x-form.input name='title'/>
 
                 {{-- Thumbnail --}}
-                <div>
-                    <label class="block my-2 uppercase font-bold text-xs text-gray-700"
-                        for="thumbnail"
-                    >
-                        Thumbnail
-                    </label>
-                    <input type="file"
-                        class="border border-gray-400 p-2 w-full @error('thumbnail') border-2 border-red-500 @enderror"
-                        name="thumbnail"
-                        id="thumbnail"
-                        value="{{ old('thumbnail') }}"
-                        required
-                    >
-                
-
-                    @error('thumbnail')
-                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
-                    @enderror
-                </div>
+                <x-form.input name='thumbnail' type="file"/>
 
                 {{-- Content --}}
-                <div>
-                    <label class="block my-2 uppercase font-bold text-xs text-gray-700"
-                        for="content"
-                    >
-                        Content
-                    </label>
-                    <textarea class="border border-gray-400 p-2 w-full @error('content') border-2 border-red-500 @enderror" 
-                        name="content" 
-                        id="content"
-                        required
-                    >{{ old('content') }}</textarea>
-
-                    @error('content')
-                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
-                    @enderror
-                </div>
+                <x-form.textarea name='content'/>
 
                 {{-- Category --}}
-                <div>
-                    <label class="block my-2 uppercase font-bold text-xs text-gray-700"
-                        for="category_id"
-                    >
-                        Category
-                    </label>
+                <x-form.field>
+                    <x-form.label name='category_id'/>
                     <select name="category_id" 
                         id="category_id" 
                         class="form-control mb-6 @error('category') border-2 border-red-500 @enderror"
@@ -89,16 +37,11 @@
                             </option>
                         @endforeach
                     </select>
-
-                    @error('category_id')
-                        <p class="text-red-500 text-xs mt-2"> {{ $message }}</p>
-                    @enderror
-                </div>
+                    <x-form.error name='category_id'/>
+                </x-form.field>
 
                 {{-- Submit --}}
-                <x-submit-button>
-                    Publish
-                </x-submit-button>
+                <x-form.button> Publish </x-form.button>
             </form>
         </x-panel>
     </section>
