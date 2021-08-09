@@ -39,7 +39,7 @@ Route::get('/posts', [PostsController::class, 'index'])->name('home');
 Route::post('/posts', [PostsController::class, 'store']);
 Route::get("/posts/create", [PostsController::class, 'create']);
 Route::get('/posts/{post:slug}/edit', [PostsController::class, 'edit']);
-Route::put("/posts/{post:slug}", [PostsController::class, 'update']);
+Route::patch("/posts/{post:slug}", [PostsController::class, 'update']);
 Route::get("/posts/{post:slug}", [PostsController::class, 'show']);
 
 Route::delete("/posts/{post:slug}", [PostsController::class, 'destroy']);

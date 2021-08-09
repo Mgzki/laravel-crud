@@ -7,13 +7,13 @@
                 <form method="POST" action="/register" class="mt-10">
                     @csrf
                     {{-- Name --}}
-                    <x-form.input name="name" />
+                    <x-form.input name="name" required/>
                     {{-- Username --}}
-                    <x-form.input name="Username" />
+                    <x-form.input name="Username" required/>
                     {{-- Email --}}
-                    <x-form.input name="email" type="email" autocomplete="username" />
+                    <x-form.input name="email" type="email" autocomplete="username" required/>
                     {{-- Password --}}
-                    <x-form.input name="password" type="password" autocomplete="current-password" />
+                    <x-form.input name="password" type="password" autocomplete="current-password" required/>
 
                     <x-form.button> Register </x-form.button>
 

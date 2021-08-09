@@ -112,16 +112,14 @@ class PostsController extends Controller
 
     public function update(Post $post)
     {
-        request()->validate([
+        $attributes = request()->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
 
         if (Gate::allows('admin-only', Auth::user())){
-            $post->update([
-                'title' => request('title'),
-                'content' => request('content'),
-            ]);
+            
+            $post->update($attributes);
             return redirect('/posts');
         } else {
             abort(403);

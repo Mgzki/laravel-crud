@@ -9,10 +9,10 @@
                 @csrf
 
                 {{-- Title --}}
-                <x-form.input name='title'/>
+                <x-form.input name='title' required/>
 
                 {{-- Thumbnail --}}
-                <x-form.input name='thumbnail' type="file"/>
+                <x-form.input name='thumbnail' type="file" required/>
 
                 {{-- Content --}}
                 <x-form.textarea name='content'/>

@@ -7,9 +7,9 @@
                     {{-- protects against csrf attack --}}
                     @csrf
 
-                    <x-form.input name="email" type="email" autocomplete="username" />
+                    <x-form.input name="email" type="email" autocomplete="username" required/>
 
-                    <x-form.input name="password" type="password" autocomplete="current-password" />
+                    <x-form.input name="password" type="password" autocomplete="current-password" required/>
 
                     <x-form.button class="mt-3">Log in </x-form.button>
                 </form>
