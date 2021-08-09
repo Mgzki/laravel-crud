@@ -1,55 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<x-layout>
+    <section class="max-w-2xl mx-auto px-6 py-8">
+        <h1 class="font-bold text-xl mb-4">
+            Modifying Post
+        </h1>
+        <x-panel>
+            <form method="POST" action="/posts/{{ $post->slug }}">
+                @method('PUT')
+                @csrf
 
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body>
-    <div style="width: 900px;" class="container max-w-full mx-auto pt-4">
-    
-
-        <form method= "POST" action="/posts/{{ $post->slug }}">
-            @method('PUT')
-            @csrf
-
-            <div class="mb-4">
-                <label class="font-bold text-gray-800" for="title">Title: </label>
-                <input class="h-10 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="title"
-                name="title" value="{{ $post->title }}">
-            </div>
-
-            <div class="mb-4">
-                <label class="font-bold text-gray-800" for="content">Content: </label>
-                <textarea class="h-16 bg white border border-gray-300 round py-4 px-3 mr-4 w-full
-                text-gray-600 text-sm focus:outline-none focus:border-gray-400 focus:rind-0" id ="content"
-                name="content">{{ $post->content }}</textarea>
-            </div>
-
-            <button class="bg-blue-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
-            rounded hover:shadow">Update</button>
-
-            <a href="/posts" class="bg-gray-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
-            rounded hover:shadow">Cancel</a>
-
+                {{-- Title --}}
+                <x-form.field>
+                    <div class="mb-4">
+                        <x-form.label name="title"/>
+                        <input class="border border-gray-200 rounded p-2 w-full @error('title') border-2 border-red-500 @enderror" id ="title"
+                        name="title" value="{{ $post->title }}">
+                    </div>
+                </x-form.field>
+                
+                {{-- Content --}}
+                <x-form.field>
+                    <div class="mb-4">
+                        <x-form.label name="content"/>
+                        <textarea class="h-64 border border-gray-200 rounded p-2 w-full @error('content') border-2 border-red-500 @enderror" id="content"
+                            name="content">{{ $post->content }}</textarea>
+                    </div>
+                </x-form.field>
             
+                <x-form.button> Update </x-form.button>
+                <x-form.button-cancel destination="/posts"> Cancel </x-form.button-cancel>
 
-        </form>
+            </form>
 
-        <form method='POST' action="/posts/{{ $post->slug }}">
-            @csrf
-            @method('DELETE')
-            
-            <button class=" bg-red-500 tracking-wide text-white px-6 py-2 inline-block mb-6 shadow-lg
-                rounded hover:shadow">Delete</button>
-        </form>
-        
+            <form method='POST' action="/posts/{{ $post->slug }}">
+                @csrf
+                @method('DELETE')
 
-    </div>
-    
-</body>
-</html>
+                <x-form.button-delete> Delete </x-form.button-delete>
+            </form>
+        </x-panel>
+    </section>
+</x-layout>

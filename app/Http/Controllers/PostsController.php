@@ -67,7 +67,6 @@ class PostsController extends Controller
             'content' => 'required',
             'category_id' => ['required', Rule::exists('categories','id')],
         ]);
-        
 
         Post::create([
             'title' => request('title'),

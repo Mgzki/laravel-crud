@@ -34,18 +34,26 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <span class="text-xs font-bold uppercase">{{ auth()->user()->name }}</span>
+                    <x-dropdown >
+                        <x-slot name="trigger">
+                            <button class="text-xs font-bold uppercase inline-flex "> <p class="mr-1 text-gray-500">Welcome, </p> {{ auth()->user()->name }}</button>
+                        </x-slot>
 
-                    @if (Gate::allows('admin-only', Auth::user()))
-                        <div class="text-xs text-blue-500 ml-6">
-                            <a href="/posts/create">Create post
-                        </div>
-                    @endif
+                        <x-dropdown-item href="/posts" :active="request()->is('posts')"> Posts </x-dropdown-item>
 
-                    <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
-                        @csrf
-                        <button type="submit">Log Out</button>
-                    </form>
+                        @if (Gate::allows('admin-only', Auth::user()))
+                            <x-dropdown-item href="/posts/create" :active="request()->is('posts/create')"> New Post </x-dropdown-item>
+                        @endif
+
+                        {{-- Prevents default click action --}}
+                        {{-- For intercepting the logout to submit a POST request --}}
+                        <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()"> Log Out </x-dropdown-item>
+
+                        <form action="/logout" id="logout-form" method="POST" class="hidden">
+                            @csrf
+
+                        </form>
+                    </x-dropdown>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log in</a>

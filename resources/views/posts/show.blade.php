@@ -40,19 +40,22 @@
                         </a>
 
                         <div class="space-x-2">
+                            @if (Gate::allows('admin-only', Auth::user()))
+                                <div>
+                                    <a href="/posts/{{ $post->slug }}/edit"
+                                        class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600">Modify</a>
+                                </div>
+                            @else
                             <x-category-button :category="$post->category" />
+                            @endif
+                            
                         </div>
                     </div>
 
                     <h1 class="font-bold text-3xl lg:text-4xl mb-4">
                         {{ $post->title }}
                     </h1>
-                    @if (Gate::allows('admin-only', Auth::user()))
-                        <div class="mb-6 text-right">
-                            <a href="/posts/{{ $post->slug }}/edit"
-                                class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600">Modify</a>
-                        </div>
-                    @endif
+
 
                     <div class="space-y-4 lg:text-lg leading-loose pt-2">
                         {{ $post->content }}
