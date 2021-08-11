@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,9 @@ Route::post('register', [RegisterController::class, 'store'])->middleware('guest
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+Route::get('contact', [ContactMessageController::class, 'index']);
+Route::get('contact/store', [ContactMessageController::class, 'store']);
 
 // Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
 // Route::get('/authors/{author:username}', function (User $author) {

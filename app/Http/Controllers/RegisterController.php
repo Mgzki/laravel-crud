@@ -27,6 +27,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect('/')->withSuccess(' Your account has been created.');
+        return redirect('/posts')->withSuccess(' Your account has been created.');
     }
 }
