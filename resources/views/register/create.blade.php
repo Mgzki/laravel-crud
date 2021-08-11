@@ -9,7 +9,7 @@
                     {{-- Name --}}
                     <x-form.input name="name" required/>
                     {{-- Username --}}
-                    <x-form.input name="Username" required/>
+                    <x-form.input name="username" required/>
                     {{-- Email --}}
                     <x-form.input name="email" type="email" autocomplete="username" required/>
                     {{-- Password --}}
