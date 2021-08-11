@@ -107,7 +107,6 @@ class PostsController extends Controller
         } else {
             abort(403);
         }
-        return view('posts.edit',['post' => $post]);
     }
 
     public function update(Post $post)

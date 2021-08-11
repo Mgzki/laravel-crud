@@ -40,7 +40,9 @@
                         </x-slot>
 
                         <x-dropdown-item href="/posts" :active="request()->is('posts')"> Posts </x-dropdown-item>
-
+                        
+                        {{-- can do the following as well --}}
+                        {{-- @can('admin-only') --}}
                         @if (Gate::allows('admin-only', Auth::user()))
                             <x-dropdown-item href="/posts/create" :active="request()->is('posts/create')"> New Post </x-dropdown-item>
                         @endif
