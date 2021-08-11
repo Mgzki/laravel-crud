@@ -4,7 +4,7 @@
 
         @auth
             <header class="flex items-center">
-                <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}" alt="" width="40" height="40"
+                <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}" alt="" style="width:50px"
                     class="rounded-full">
                 <h2 class="ml-4">Leave a comment</h2>
             </header>
