@@ -23,6 +23,11 @@ use Illuminate\Validation\ValidationException;
 */
 
 
+Route::domain('todo.localhost')->group(function () {
+    Route::get('/dashboard', function() {
+        return view('dashboard');
+    });
+});
 
 Route::get('/', function () {
 
