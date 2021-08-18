@@ -61,8 +61,11 @@
                         </form>
                     </x-dropdown>
                 @else
-                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                    <a href="/login" class="ml-6 text-xs font-bold uppercase">Log in</a>
+                    <div>
+                        <a href="/register" class="text-xs font-bold uppercase relative">Register</a>
+                        <a href="/login" class="ml-6 text-xs font-bold uppercase relative">Log in</a>
+                    </div>
+
                 @endauth
 
                 <div>
