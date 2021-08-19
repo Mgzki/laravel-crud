@@ -55,7 +55,7 @@ Route::get('/', function () {
     //     'category' => Category::all(),
     //     'posts' => Post::with('category','author')->orderByDesc('created_at')->filter(request(['search','category','author']))->get(),
     // ]);
-    return redirect('/posts');
+    return view('welcome');
 });
 Route::get('/posts', [PostsController::class, 'index']);
 Route::post('/posts', [PostsController::class, 'store']);
