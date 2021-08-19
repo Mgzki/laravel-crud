@@ -23,7 +23,7 @@ class SessionsController extends Controller
 
         if (Auth::attempt($attributes)) {
             session()->regenerate();
-            return back()->withSuccess('Logged in.');
+            return redirect('/')->withSuccess('Logged in.');
         }
 
         throw ValidationException::withMessages([
