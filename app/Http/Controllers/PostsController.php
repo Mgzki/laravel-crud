@@ -119,7 +119,7 @@ class PostsController extends Controller
         if (Gate::allows('admin-only', Auth::user())){
             
             $post->update($attributes);
-            return redirect('/posts');
+            return redirect('/posts')->withSuccess('Post updated');
         } else {
             abort(403);
         }
@@ -129,6 +129,6 @@ class PostsController extends Controller
     {
         $post->delete();
 
-        return redirect('/posts');
+        return redirect('/posts')->withSuccess('Post deleted');
     }
 }
