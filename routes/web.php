@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactMessageController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use Illuminate\Support\Facades\DB;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\TodoListController;
 use App\Services\Newsletter;
 use Illuminate\Validation\ValidationException;
 
@@ -24,9 +26,23 @@ use Illuminate\Validation\ValidationException;
 
 
 Route::domain('todo.localhost')->group(function () {
-    Route::get('/dashboard', function() {
-        return view('dashboard');
-    });
+    // Route::get('/dashboard', function() { 
+    //     return view('lists.dashboard');
+    // });
+
+    Route::get('/dashboard', [TodoListController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard', [TodoListController::class, 'store']);
+    Route::get('/dashboard/create', [TodoListController::class, 'create']);
+    Route::get('/dashboard/{todoList:slug}', [TodoListController::class, 'show']);
+    Route::put('/dashboard/{todoList:slug}', [TodoListController::class, 'update']);
+    Route::delete('/dashboard/{todoList:slug}', [TodoListController::class, 'destroy']);
+    Route::get('/dashboard/{todoList:slug}/edit', [TodoListController::class, 'edit']);
+
+    Route::post('/dashboard/item', [ItemController::class, 'store']);
+    Route::put('/dashboard/{item:id}/edit/', [ItemController::class, 'update']);
+    Route::get('/dashboard/{item:id}/edit/', [ItemController::class, 'edit']);
+    Route::delete('/dashboard/{item:id}/edit/', [ItemController::class, 'destroy']);
+
 });
 
 Route::get('/', function () {
@@ -41,7 +57,7 @@ Route::get('/', function () {
     // ]);
     return redirect('/posts');
 });
-Route::get('/posts', [PostsController::class, 'index'])->name('home');
+Route::get('/posts', [PostsController::class, 'index']);
 Route::post('/posts', [PostsController::class, 'store']);
 Route::get("/posts/create", [PostsController::class, 'create']);
 Route::get('/posts/{post:slug}/edit', [PostsController::class, 'edit']);
@@ -57,7 +73,7 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest'); //middleware is logic that runs whenever a new request comes in
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
+Route::get('login', [SessionsController::class, 'create'])->middleware('guest')->name('login');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
