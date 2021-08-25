@@ -59,6 +59,10 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 Route::get('contact', [ContactMessageController::class, 'index']);
 Route::get('contact/store', [ContactMessageController::class, 'store']);
 
+Route::get('test', function () {
+    return view('test');
+});
+
 // Route::get('/category/{category:slug}', [CategoryController::class, 'index']);
 // Route::get('/authors/{author:username}', function (User $author) {
 //     return view('posts.index', [
