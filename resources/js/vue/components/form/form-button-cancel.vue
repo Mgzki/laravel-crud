@@ -1,6 +1,6 @@
 <template>
-  <!-- <a
-    :href="{destination}"
+  <a
+    :href="destination"
     class="
       bg-gray-500
       text-white
@@ -15,8 +15,8 @@
     "
   >
     <slot></slot>
-  </a> -->
-  <button
+  </a>
+  <!-- <button
     class="
       bg-gray-500
       text-white
@@ -32,16 +32,16 @@
     v-on:click="goToDestination()"
   >
     <slot></slot>
-  </button>
+  </button> -->
 </template>
 
 <script>
 export default {
     props: ['destination'],
-    methods:{
-        goToDestination(){
-            window.location.href = this.destination
-        }
-    }
+    // methods:{
+    //     goToDestination(){
+    //         window.location.href = this.destination
+    //     }
+    // }
 };
 </script>

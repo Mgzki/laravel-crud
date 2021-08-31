@@ -2,7 +2,7 @@
   <div >
       <form-button> Register </form-button>
       <form-button-delete> Delete </form-button-delete>
-      <form-button-cancel :destination="'posts'"> Cancel </form-button-cancel>
+      <form-button-cancel destination="posts"> Cancel </form-button-cancel>
   </div>
 </template>
 
