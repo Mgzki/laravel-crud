@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,9 +8,14 @@
 </head>
 
 <body>
-    <div id="app" class="max-w-lg mx-auto my-auto bg-gray-300 py-3 px-3">
-        <app></app>
-    </div>
+    
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
-</html>
+</html> --}}
+<x-layout>
+    <div id="app" class="max-w-lg mx-auto my-auto bg-gray-200 py-3 px-3 mt-20 rounded-md">
+        {{-- <app></app> --}}
+        <test></test>
+    </div>
+</x-layout>
+<script src="{{ mix('js/app.js') }}"></script>

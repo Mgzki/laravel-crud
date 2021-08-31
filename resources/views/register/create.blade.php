@@ -26,7 +26,6 @@
                 @endif --}}
                 </form>
             </x-panel>
-
         </main>
     </section>
 </x-layout>
