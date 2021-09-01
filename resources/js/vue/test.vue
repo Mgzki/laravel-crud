@@ -1,17 +1,24 @@
 <template>
-  <div >
-      <form-button> Register </form-button>
-      <form-button-delete> Delete </form-button-delete>
-      <form-button-cancel destination="posts"> Cancel </form-button-cancel>
+  <div>
+    <form action="/login" method="POST">
+        
+        <form-input name="email"/>
+        <form-input name="password"/>
+        <form-button> Submit </form-button>
+        <form-textarea name="Test"/>
+        <!-- <input type="hidden" name="_token" :value="csrf"> -->
+        
+    </form>
   </div>
 </template>
 
 <style lang="scss"></style>
 
 <script>
-import FormButtonCancel from './components/form/form-button-cancel.vue';
-import FormButtonDelete from './components/form/form-button-delete.vue';
-import formButton from './components/form/form-button.vue';
+import FormButton from './components/form/form-button.vue';
+import FormInput from './components/form/form-input.vue';
+import FormTextarea from './components/form/form-textarea.vue';
 export default {
-  components: { formButton, FormButtonDelete, FormButtonCancel },};
+  components: { FormInput, FormButton, FormTextarea},
+};
 </script>

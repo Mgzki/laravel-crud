@@ -60,6 +60,7 @@ class PostsController extends Controller
         // ], [
         //     'title.required' => 'David is not cool', 
         // ])->validate();
+        
 
         request()->validate([
             'title' => 'required|unique:posts,title',
