@@ -1,17 +1,14 @@
 <template>
   <div>
-    <panel></panel>
+    <layout></layout>
   </div>
 </template>
 
 <style lang="scss"></style>
 
 <script>
-import FormButton from './components/form/form-button.vue';
-import Panel from './components/panel.vue'
-import FormInput from './components/form/form-input.vue';
-import FormTextarea from './components/form/form-textarea.vue';
+import Layout from './components/layout.vue';
 export default {
-  components: { FormInput, FormButton, FormTextarea, Panel},
+  components: { Layout },
 };
 </script>
