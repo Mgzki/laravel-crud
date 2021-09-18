@@ -1,64 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Technologies
+- Laravel
+- Blade
+- TailwindCSS
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## About
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This blog will feature blog posts by me once it is host. Visitors are welcome to register or login to leave comments on my posts, or use my contact form if they have questions or concerns. You will also be able to subscribe to my mailing list (via MailChimp)! The list of features is as follows:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Create new post (admin only)
+- Post comments on a given post
+- Search by category and/or author/keyword
+- Registration/login pages to interact with posts
+- Update/delete existing posts (admin only)
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# laravel-crud
-# laravel-crud
+## What it looks like
+Because this website has yet to be hosted, I have included some images to show the design and functions
+    
+![home](https://user-images.githubusercontent.com/23427032/133866525-8e949934-27bb-482d-bb54-2744d56368ee.png)
+*A view of the homepage, most recent post is displayed first*
+![home-cont](https://user-images.githubusercontent.com/23427032/133866572-10e00c98-cb50-4c68-877a-5b5c586ee15c.png)
+*Shows the next posts, older posts are smaller. Also features pagination (not shown)*
+![register](https://user-images.githubusercontent.com/23427032/133866613-a47e0066-fe18-4010-9dd7-c608598c6f2a.png)
+*Registration page*
+![login](https://user-images.githubusercontent.com/23427032/133866625-ba460623-2996-4651-ab79-cc7cd272a060.png)
+*Login page*
+![contact](https://user-images.githubusercontent.com/23427032/133866631-a4037dab-8c34-4d9e-98ba-c3a7f4e65d54.png)
+*Contact page*
+![post-guest](https://user-images.githubusercontent.com/23427032/133866645-e92defb0-0d77-4722-8b65-52c9754257d3.png)
+*What you see on a post as a guest*
+![post-comment](https://user-images.githubusercontent.com/23427032/133866658-4c351d11-ae49-4667-b27b-94f788f0ba7e.png)
+*What you see once you login (modify is admin only)*
+![category-filter](https://user-images.githubusercontent.com/23427032/133866690-084dac58-e7df-4dc9-9666-f6c76237b046.png)
+*Filtering by category alone*
+![category and keyword](https://user-images.githubusercontent.com/23427032/133866701-ce09faea-99ac-4b8c-820f-bec33035a208.png)
+*Filtering by category and keyword*
+![create post](https://user-images.githubusercontent.com/23427032/133866705-7811745b-538d-43f9-b51d-51ee84e58a70.png)
+*Creating a post (admin only)*
+![post-modify](https://user-images.githubusercontent.com/23427032/133866715-4b5393e9-eb36-4173-860a-91406e431976.png)
+*Modifying a post (admin only)*
